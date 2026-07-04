@@ -2,7 +2,7 @@
   <div id="login" :class="{ recaptcha: recaptcha }">
     <form @submit="submit">
       <img :src="logoURL" alt="MIC File Manager" />
-      <h1>{{ name }}</h1>
+      <h1>{{ MIC File Manager }}</h1>
       <p v-if="reason != null" class="logout-message">
         {{ t(`login.logout_reasons.${reason}`) }}
       </p>
