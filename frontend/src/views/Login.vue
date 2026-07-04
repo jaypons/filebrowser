@@ -1,7 +1,7 @@
 <template>
   <div id="login" :class="{ recaptcha: recaptcha }">
     <form @submit="submit">
-      <img :src="logoURL" alt="MIC File Manager" />
+      <img :src="logoURL" alt="MIC File Manager" style="height: 120px; width: auto; margin-bottom: 20px;"/>
       <h1 style="white-space: nowrap; font-size: 2rem;">MIC File Manager</h1>
       <p v-if="reason != null" class="logout-message">
         {{ t(`login.logout_reasons.${reason}`) }}
