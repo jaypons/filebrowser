@@ -144,7 +144,7 @@ onMounted(() => {
 html,
 body {
   /* Pulls your new webp file from the public folder */
-  background: url('/img/bg.webp') no-repeat center center fixed !important;
+  background: url('/img/back.webp') no-repeat center center fixed !important;
   background-size: cover !important; /* Forces the image to stretch beautifully to fit any screen size */
 }
 
@@ -154,6 +154,6 @@ body {
 h1 {
   white-space: nowrap !important;
   font-size: 2rem !important;
-  color: #87CEEB !important;
+  color: #FFFFFF !important;
 }
 </style>
