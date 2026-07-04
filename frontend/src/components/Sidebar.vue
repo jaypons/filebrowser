@@ -104,41 +104,43 @@
       </span>
     </p>
 
-    <div v-if="showAbout" class="custom-about-backdrop" @click.self="showAbout = false">
-      <div class="custom-about-modal">
-        <button class="close-btn" @click="showAbout = false">&times;</button>
-        
-        <div class="modal-logo-container">
-          <img src="/img/logo.svg" alt="MIC File Manager Logo" />
-        </div>
-
-        <div class="modal-content-area">
-          <h3>MIC File Manager</h3>
-          <p class="app-version">Version 2.0.0 (Stable Internal Release)</p>
+    <teleport to="body">
+      <div v-if="showAbout" class="custom-about-backdrop" @click.self="showAbout = false">
+        <div class="custom-about-modal">
+          <button class="close-btn" @click="showAbout = false">&times;</button>
           
-          <div class="modal-divider"></div>
-          
-          <p class="app-description">
-            This is a secure cloud storage environment optimized for rapid asset distribution, secure system backups, and encrypted storage configurations.
-          </p>
+          <div class="modal-logo-container">
+            <img src="/img/logo.svg" alt="MIC File Manager Logo" />
+          </div>
 
-          <table class="app-info-table">
-            <tr>
-              <td><strong>Deployment:</strong></td>
-              <td>Internal Server Node Cluster</td>
-            </tr>
-            <tr>
-              <td><strong>Maintained By:</strong></td>
-              <td>SysAdmin Core Team</td>
-            </tr>
-            <tr>
-              <td><strong>Engine Base:</strong></td>
-              <td>Modified Go Engine & Vue 3</td>
-            </tr>
-          </table>
-        </div>
-        </div>
-    </div>
+          <div class="modal-content-area">
+            <h3>MIC File Manager</h3>
+            <p class="app-version">Version 2.0.0 (Stable Internal Release)</p>
+            
+            <div class="modal-divider"></div>
+            
+            <p class="app-description">
+              This is a secure cloud storage environment optimized for rapid asset distribution, secure system backups, and encrypted storage configurations.
+            </p>
+
+            <table class="app-info-table">
+              <tr>
+                <td><strong>Deployment:</strong></td>
+                <td>Internal Server Node Cluster</td>
+              </tr>
+              <tr>
+                <td><strong>Maintained By:</strong></td>
+                <td>SysAdmin Core Team</td>
+              </tr>
+              <tr>
+                <td><strong>Engine Base:</strong></td>
+                <td>Modified Go Engine & Vue 3</td>
+              </tr>
+            </table>
+          </div>
+          </div>
+      </div>
+    </teleport>
     </nav>
 </template>
 
@@ -177,7 +179,7 @@ export default {
   },
   data() {
     return {
-      showAbout: false, // Tracks whether the custom popup window is open or hidden
+      showAbout: false,
     };
   },
   inject: ["$showError"],
@@ -266,7 +268,7 @@ export default {
   height: 100vh;
   background: rgba(0, 0, 0, 0.75); /* Dims out the application behind it */
   backdrop-filter: blur(5px);     /* Smooth premium frosted-glass blur */
-  z-index: 999999;                /* Overrides all layers */
+  z-index: 999999;                /* Overrides all layers globally */
   display: flex;
   justify-content: center;
   align-items: center;
