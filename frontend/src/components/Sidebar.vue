@@ -97,21 +97,49 @@
 
     <p class="credits">
       <span>
-        <span v-if="disableExternal">File Browser</span>
-        <a
-          v-else
-          rel="noopener noreferrer"
-          target="_blank"
-          href="https://github.com/filebrowser/filebrowser"
-          >File Browser</a
-        >
-        <span> {{ " " }} {{ version }}</span>
+        <a @click="showAbout = true" style="cursor: pointer; font-weight: bold;">MIC File Manager v2.0.0</a>
       </span>
       <span>
         <a @click="help">{{ $t("sidebar.help") }}</a>
       </span>
     </p>
-  </nav>
+
+    <div v-if="showAbout" class="custom-about-backdrop" @click.self="showAbout = false">
+      <div class="custom-about-modal">
+        <button class="close-btn" @click="showAbout = false">&times;</button>
+        
+        <div class="modal-logo-container">
+          <img src="/img/logo.svg" alt="MIC File Manager Logo" />
+        </div>
+
+        <div class="modal-content-area">
+          <h3>MIC File Manager</h3>
+          <p class="app-version">Version 2.0.0 (Stable Internal Release)</p>
+          
+          <div class="modal-divider"></div>
+          
+          <p class="app-description">
+            This is a secure cloud storage environment optimized for rapid asset distribution, secure system backups, and encrypted storage configurations.
+          </p>
+
+          <table class="app-info-table">
+            <tr>
+              <td><strong>Deployment:</strong></td>
+              <td>Internal Server Node Cluster</td>
+            </tr>
+            <tr>
+              <td><strong>Maintained By:</strong></td>
+              <td>SysAdmin Core Team</td>
+            </tr>
+            <tr>
+              <td><strong>Engine Base:</strong></td>
+              <td>Modified Go Engine & Vue 3</td>
+            </tr>
+          </table>
+        </div>
+        </div>
+    </div>
+    </nav>
 </template>
 
 <script>
@@ -146,6 +174,11 @@ export default {
   },
   components: {
     ProgressBar,
+  },
+  data() {
+    return {
+      showAbout: false, // Tracks whether the custom popup window is open or hidden
+    };
   },
   inject: ["$showError"],
   computed: {
@@ -220,3 +253,102 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+/* ======================================================= */
+/* MODAL POP-UP SYSTEM LAYOUT BACKGROUND STYLES             */
+/* ======================================================= */
+.custom-about-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75); /* Dims out the application behind it */
+  backdrop-filter: blur(5px);     /* Smooth premium frosted-glass blur */
+  z-index: 999999;                /* Overrides all layers */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-about-modal {
+  background: #1b1d2a;            /* Premium dark block background layout */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 35px 30px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  text-align: center;
+  animation: modalFadeInEffect 0.2s ease-out;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 28px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #ffffff;
+}
+
+.modal-logo-container img {
+  height: 75px;
+  width: auto;
+  margin-bottom: 12px;
+}
+
+.modal-content-area h3 {
+  margin: 5px 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.app-version {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: -2px;
+}
+
+.modal-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 15px 0;
+}
+
+.app-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 22px;
+  text-align: left;
+}
+
+.app-info-table {
+  width: 100%;
+  font-size: 0.85rem;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.app-info-table td {
+  padding: 6px 4px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes modalFadeInEffect {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+</style>
