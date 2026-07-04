@@ -104,3 +104,26 @@ app.provide("$showError", (error: Error | string, displayReport = true) => {
 });
 
 router.isReady().then(() => app.mount("#app"));
+
+// Smart Soft-Default: Force Dark Mode ONLY on the login screen/logged-out states
+const applySoftDefaultTheme = () => {
+  // Check if the login container exists on the current page
+  const isLoginPage = document.querySelector('#login') || document.querySelector('.login') || window.location.pathname.includes('/login');
+  
+  if (isLoginPage) {
+    // Apply dark attributes safely to both common standards
+    document.documentElement.setAttribute('theme', 'dark');
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.classList.add('dark');
+    document.body.classList.add('dark');
+  }
+};
+
+// Run instantly on page load
+applySoftDefaultTheme();
+
+// Watch for page transitions (like logging out) to re-apply dark mode to the login card
+const themeObserver = new MutationObserver(() => {
+  applySoftDefaultTheme();
+});
+themeObserver.observe(document.body, { childList: true, subtree: true });
