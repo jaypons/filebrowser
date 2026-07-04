@@ -137,3 +137,23 @@ onMounted(() => {
   });
 });
 </script>
+
+<style>
+/* 1. PERMANENT IMAGE BACKGROUND LOCK */
+#login,
+html,
+body {
+  /* Pulls your new webp file from the public folder */
+  background: url('/img/bg.webp') no-repeat center center fixed !important;
+  background-size: cover !important; /* Forces the image to stretch beautifully to fit any screen size */
+}
+
+/* 2. Keeps your title on a single line */
+#login h1, 
+.login h1, 
+h1 {
+  white-space: nowrap !important;
+  font-size: 2rem !important;
+  color: #87CEEB !important;
+}
+</style>
