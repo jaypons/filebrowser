@@ -1,11 +1,11 @@
-const name: string = window.FileBrowser.Name || "File Browser";
+const name: string = window.FileBrowser.Name || "MIC File Manager";
 const disableExternal: boolean = window.FileBrowser.DisableExternal;
 const disableUsedPercentage: boolean = window.FileBrowser.DisableUsedPercentage;
 const baseURL: string = window.FileBrowser.BaseURL;
 const staticURL: string = window.FileBrowser.StaticURL;
 const recaptcha: string = window.FileBrowser.ReCaptcha;
 const recaptchaKey: string = window.FileBrowser.ReCaptchaKey;
-const signup: boolean = window.FileBrowser.Signup;
+const signup: boolean = true;
 const version: string = window.FileBrowser.Version;
 const logoURL = `${staticURL}/img/logo.svg`;
 const noAuth: boolean = window.FileBrowser.NoAuth;
