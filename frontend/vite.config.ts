@@ -31,6 +31,8 @@ export default defineConfig(({ command }) => {
       plugins,
       resolve,
       server: {
+        host: true,  /* CRITICAL: Forces Vite to broadcast to the Codespace network */
+        port: 3000,  /* Locks the environment down to Port 3000 */
         proxy: {
           "/api/command": {
             target: "ws://127.0.0.1:8080",
